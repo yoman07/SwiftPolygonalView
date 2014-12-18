@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PolygonalViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shg-fX-O6A" customClass="PolygonalView" customModule="PolygonalViewDemo" customModuleProvider="target">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swift-logo-hero.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kxK-Gw-Xw2">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="kxK-Gw-Xw2" firstAttribute="top" secondItem="shg-fX-O6A" secondAttribute="top" id="7gs-rh-Ax7"/>
+                                    <constraint firstAttribute="height" constant="200" id="JuG-jk-rTM"/>
+                                    <constraint firstItem="kxK-Gw-Xw2" firstAttribute="leading" secondItem="shg-fX-O6A" secondAttribute="leading" id="Src-xf-cOE"/>
+                                    <constraint firstAttribute="trailing" secondItem="kxK-Gw-Xw2" secondAttribute="trailing" id="aPI-KW-GjS"/>
+                                    <constraint firstAttribute="bottom" secondItem="kxK-Gw-Xw2" secondAttribute="bottom" id="pWW-t5-0ye"/>
+                                    <constraint firstAttribute="width" constant="200" id="rvd-Dk-gUE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sideNumber">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="HPK-g3-s6x">
+                                <rect key="frame" x="198" y="408" width="204" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="HOp-zE-zWL"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="slideValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2EJ-tk-sTx"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="4" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="8tn-76-aT8">
+                                <rect key="frame" x="198" y="446" width="204" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="7Hg-2J-oBG"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="numberOfSidesChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="FFk-ul-Dr6"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="shg-fX-O6A" secondAttribute="centerX" id="1N0-7D-HGB"/>
+                            <constraint firstAttribute="centerY" secondItem="shg-fX-O6A" secondAttribute="centerY" id="FHp-hY-phR"/>
+                            <constraint firstAttribute="centerX" secondItem="HPK-g3-s6x" secondAttribute="centerX" id="M4X-Tf-j0G"/>
+                            <constraint firstItem="HPK-g3-s6x" firstAttribute="top" secondItem="shg-fX-O6A" secondAttribute="bottom" constant="8" id="Y1a-hz-LtG"/>
+                            <constraint firstItem="8tn-76-aT8" firstAttribute="top" secondItem="HPK-g3-s6x" secondAttribute="bottom" constant="8" id="ik5-jp-lRJ"/>
+                            <constraint firstAttribute="centerX" secondItem="8tn-76-aT8" secondAttribute="centerX" id="uJd-27-tMt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="slider_cornerRadius" destination="HPK-g3-s6x" id="nXK-3V-sVy"/>
+                        <outlet property="slider_sides" destination="8tn-76-aT8" id="O9b-vd-S1S"/>
+                        <outlet property="view_image" destination="shg-fX-O6A" id="AFP-PB-MgB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="swift-logo-hero.jpg" width="600" height="338"/>
+    </resources>
+</document>
