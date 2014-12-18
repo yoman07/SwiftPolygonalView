@@ -41,18 +41,28 @@ import UIKit
     
     func drawShape() {
         var shapePath = UIBezierPath()
-        let theta = CGFloat(2.0 * M_PI / Double(sideNumber))
-        let offset = CGFloat(Float(cornerRadius) * tanf(Float(theta) / 2.0))
-        let squareWidth = min(frame.height, frame.width)
+        let theta = CGFloat(2.0 * M_PI / Double(sideNumber)) // The 'turn' at each corner
+        let offset = CGFloat(Float(cornerRadius) * tanf(Float(theta) / 2.0)) // The point from witch to draw the rounded corners
+        let squareWidth = min(frame.height, frame.width) // The width of the square
+        
+        // We calculate the length of a side of the polygon
         var length = squareWidth - CGFloat(borderWidth)
-        if sideNumber < 4 { //We make an axecption for the triangle so it's not too large
+        //We make an axecption for the triangle so it's not too large
+        if sideNumber < 4 {
             length /= 1.5
         }
+        // Use this one if your not putting an image in your view, or is the image is not large enougth
+//        if (sides % 4 != 0) { // if not dealing with polygon which will be square with all sides ...
+//            length = length * cosf(theta / 2.0) + offset/2.0; // ... offset it inside a circle inside the square
+//        }
+        
+        // We start drawing form the lower right corner 'point'
         let sideLength = length * CGFloat(tanf(Float(theta) / 2.0))
         var point = CGPointMake(squareWidth / 2.0 + sideLength / 2.0 - offset, squareWidth - (squareWidth - length) / 2.0)
         var angle = CGFloat(M_PI)
         shapePath.moveToPoint(point)
         
+        // We draw the other sides and the rounded corners
         for var side = 0 ; side < sideNumber ; ++side {
             point = CGPointMake(CGFloat(point.x) + (sideLength - offset * 2.0) * CGFloat(cosf(Float(angle))), CGFloat(point.y) + (sideLength - offset * 2.0) * CGFloat(sinf(Float(angle))))
             shapePath.addLineToPoint(point)
@@ -63,6 +73,7 @@ import UIKit
         }
         shapePath.closePath()
         
+        // We apply the mask to the view
         let mask = CAShapeLayer()
         mask.path = shapePath.CGPath
         mask.lineWidth = borderWidth
@@ -70,6 +81,7 @@ import UIKit
         mask.fillColor = UIColor.whiteColor().CGColor
         layer.mask = mask
         
+        // We draw the border according to the mask path
         let border = CAShapeLayer()
         border.path = shapePath.CGPath
         border.lineWidth = borderWidth;
